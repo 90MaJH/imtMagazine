@@ -58,11 +58,11 @@ class ImtBoardsWriteForm(forms.ModelForm):
 
         widgets = {
             'pub_user': forms.HiddenInput,
-            'pub_user_nickname': forms.TextInput(attrs={'placeholder': 'under 10 characters'}),
+            'pub_user_nickname': forms.TextInput(attrs={'placeholder': '5자이하'}),
             'title': forms.TextInput(attrs={'placeholder': 'under 50 characters'}),
             'context': SummernoteWidget(),
             'password': PasswordInput(attrs={'class': 'form-control',
-                                             'placeholder': 'under 4 characters'}),
+                                             'placeholder': '4자이하'}),
         }
 
 
@@ -73,8 +73,8 @@ class ImtBoardsReplyForm(forms.ModelForm):
 
         widgets = {
             'reply_user': forms.HiddenInput,
-            'reply_user_nickname': forms.TextInput(attrs={'placeholder': 'under 10 characters'}),
-            'password': PasswordInput(attrs={'placeholder': 'under 4 characters'}),
+            'reply_user_nickname': forms.TextInput(attrs={'placeholder': '5자이하'}),
+            'password': PasswordInput(attrs={'placeholder': '4자이하'}),
             'context': forms.Textarea(attrs={'cols': 2, 'rows': 5}),
             'imtBoards': forms.HiddenInput,
             'parent': forms.HiddenInput,
@@ -88,8 +88,8 @@ class ImtBoardsNoticeReplyForm(forms.ModelForm):
 
         widgets = {
             'reply_user': forms.HiddenInput,
-            'reply_user_nickname': forms.TextInput(attrs={'placeholder': 'under 10 characters'}),
-            'password': PasswordInput(attrs={'placeholder': 'under 4 characters'}),
+            'reply_user_nickname': forms.TextInput(attrs={'placeholder': '5자이하'}),
+            'password': PasswordInput(attrs={'placeholder': '4자이하'}),
             'context': forms.Textarea(attrs={'cols': 2, 'rows': 5}),
             'imtBoards_notice': forms.HiddenInput,
             'parent': forms.HiddenInput,
@@ -104,11 +104,11 @@ class QnasWriteForm(forms.ModelForm):
 
         widgets = {
             'pub_user': forms.HiddenInput,
-            'pub_user_nickname': forms.TextInput(attrs={'placeholder': 'under 10 characters'}),
+            'pub_user_nickname': forms.TextInput(attrs={'placeholder': '5자이하'}),
             'title': forms.TextInput(attrs={'placeholder': 'under 50 characters'}),
             'context': SummernoteWidget(),
             'password': PasswordInput(attrs={'class': 'form-control',
-                                             'placeholder': 'under 4 characters'}),
+                                             'placeholder': '4자이하'}),
         }
 
 
@@ -119,8 +119,8 @@ class QnasReplyForm(forms.ModelForm):
 
         widgets = {
             'reply_user': forms.HiddenInput,
-            'reply_user_nickname': forms.TextInput(attrs={'placeholder': 'under 10 characters'}),
-            'password': PasswordInput(attrs={'placeholder': 'under 4 characters'}),
+            'reply_user_nickname': forms.TextInput(attrs={'placeholder': '5자이하'}),
+            'password': PasswordInput(attrs={'placeholder': '4자이하'}),
             'context': forms.Textarea(attrs={'cols': 2, 'rows': 5}),
             'qnas': forms.HiddenInput,
             'parent': forms.HiddenInput,
@@ -134,8 +134,8 @@ class QnasNoticeReplyForm(forms.ModelForm):
 
         widgets = {
             'reply_user': forms.HiddenInput,
-            'reply_user_nickname': forms.TextInput(attrs={'placeholder': 'under 10 characters'}),
-            'password': PasswordInput(attrs={'placeholder': 'under 4 characters'}),
+            'reply_user_nickname': forms.TextInput(attrs={'placeholder': '5자이하'}),
+            'password': PasswordInput(attrs={'placeholder': '4자이하'}),
             'context': forms.Textarea(attrs={'cols': 2, 'rows': 5}),
             'qnas_notice': forms.HiddenInput,
             'parent': forms.HiddenInput,
