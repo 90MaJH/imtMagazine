@@ -25,7 +25,7 @@ ENVIRONMENT = get_secret("ENVIRONMENT")
 SECRET_KEY = get_secret("SECRET_KEY")
 DEBUG = get_secret("DEBUG")
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0',]
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '.pythonanywhere.com']
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
