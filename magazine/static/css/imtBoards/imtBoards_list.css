@@ -1,0 +1,110 @@
+
+
+.container-write{
+    text-align: center;
+}
+
+.container-paginator{
+    text-align: right;
+}
+
+tr{
+    vertical-align: middle;
+}
+
+.notices{
+    font-size: 0.8em;
+    background-color: rgba(235,235,235,0.5);
+}
+
+.notice-icon{
+    font-size: 0.7em;
+}
+
+.magazines{
+    background-color: rgba(220,255,255,0.3);
+}
+
+.posts td:first-child{
+    width: 25%;
+}
+
+.posts td:nth-child(2){
+    width: 3%;
+}
+
+.posts td:nth-child(3){
+    width: 15%;
+    word-break: break-word;
+    font-size: 0.8em;
+    font-family: 'Indie Flower', cursive;
+}
+
+.posts td:nth-child(4){
+    width: 54%;
+    word-break: break-word;
+    font-size: 0.8em;
+}
+
+/*tr td:nth-child(5){*/
+/*    width: 5%;*/
+/*}*/
+
+.posts td:last-child{
+    width: 3%;
+}
+
+.search-bar{
+    margin-bottom: 10px;
+}
+
+.dropdown-btn{
+    min-width:100%;
+}
+
+.col-search{
+    padding-left: 0px;
+}
+
+/*
+<= 30초 : 보라색
+<= 1분 : 빨간색
+<= 5분 : 주황색
+<= 10분 : 노란색
+<= 30분 : 초록색
+<= 1시간 : 하늘색
+<= 하루 : 남색
+나머지 : 검정색
+*/
+
+.reply-cnt-1{
+    color: rebeccapurple;
+}
+
+.reply-cnt-2{
+    color: mediumvioletred;
+}
+
+.reply-cnt-3{
+    color: orangered;
+}
+
+.reply-cnt-4{
+    color: yellowgreen;
+}
+
+.reply-cnt-5{
+    color: green;
+}
+
+.reply-cnt-6{
+    color: cornflowerblue;
+}
+
+.reply-cnt-7{
+    color: darkblue;
+}
+
+.reply-cnt-8{
+    color: black;
+}

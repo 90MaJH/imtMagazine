@@ -1,0 +1,31 @@
+{% extends "../common/base.html" %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/qnas/qnas_write.css' %}">
+    <script src="{% static 'js/qnas/qnas_write.js' %}"></script>
+    <script type="text/javascript">
+        var user = {
+            'is_active': '{{ user.is_active }}',
+            'nickname': '{{ user.nickname }}',
+            'id': '{{ user.id }}'
+        };
+    </script>
+
+    {% load crispy_forms_tags %}
+
+    <form method="POST" class="post-form" name='postForm' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.pub_user }}
+        {% if user.is_active == False %}
+            {{ form.pub_user_nickname|as_crispy_field }}
+            {{ form.password|as_crispy_field }}
+        {% endif %}
+        {{ form.title|as_crispy_field }}
+        {{ form.category|as_crispy_field }}
+        {{ form.context|as_crispy_field }}
+    </form>
+    <button onclick="save()" class="save btn btn-outline-primary">Save</button>
+
+
+{% endblock %}

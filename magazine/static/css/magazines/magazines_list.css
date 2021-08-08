@@ -1,0 +1,19 @@
+.container-write{
+    text-align: center;
+}
+
+.container-paginator{
+    text-align: right;
+}
+
+tr td:first-child{
+    width: 70%;
+}
+
+tr td:last-child{
+    width: 30%;
+}
+
+tr{
+    vertical-align: middle;
+}

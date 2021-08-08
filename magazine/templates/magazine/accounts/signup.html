@@ -1,0 +1,22 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts/signup.css' %}">
+    <script src="{% static 'js/accounts/signup.js' %}"></script>
+
+    {% load bootstrap4 %}
+
+    <h2>Sign up</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {% bootstrap_form form %}
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-info">signup</button>
+        </div>
+    </form>
+
+{% endblock %}

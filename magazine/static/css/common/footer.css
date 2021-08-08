@@ -1,0 +1,16 @@
+.banner{
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+    max-height: 60px;
+}
+
+.container-banner{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.imtsofts{
+    font-family: 'Zen Tokyo Zoo', cursive;
+}

@@ -1,0 +1,26 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts/activate_waiting.css' %}">
+    <div class="waiting-container">
+        <p class="title">
+            <span>
+                Please check your email.
+            </span>
+        </p>
+        <p class="context">
+            <span>
+                After email authorization,<br>
+                You can be a Real
+                <span class="imtBoards">NOKOKERS.</span>
+            </span>
+        </p>
+        <a href="/signin">
+            <button class="btn btn-outline-info">Sign In</button>
+        </a>
+        <a href="/">
+            <button class="btn btn-outline-info">Home</button>
+        </a>
+    </div>
+{% endblock %}

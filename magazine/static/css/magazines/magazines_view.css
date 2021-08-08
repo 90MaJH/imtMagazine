@@ -1,0 +1,46 @@
+/* 전체 테이블 */
+table {
+    margin-top: 10px;
+    max-width: 100%;
+}
+
+td {
+    vertical-align: middle;
+    word-break: break-word;
+}
+
+thead tr {
+    background-color: #fdd692;
+    text-align: center;
+}
+
+tr td:first-child {
+    text-align: center;
+}
+
+td div {
+    overflow: scroll;
+    word-break: break-all;
+}
+
+.btns {
+    margin-left: 10px;
+}
+
+.context {
+    min-height: 200px;
+}
+
+.post tr td:first-child {
+    width: 20%;
+    font-weight: 900;
+}
+
+.post tr td:last-child {
+    width: 80%;
+}
+
+.carousel{
+    max-width: 410px;
+    margin:auto;
+}

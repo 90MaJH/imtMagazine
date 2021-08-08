@@ -1,0 +1,23 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts/nickname_change.css' %}">
+    <script src="{% static 'js/accounts/nickname_change.js' %}"></script>
+
+    {% load bootstrap4 %}
+
+    <div class="nickname-change-container">
+        <h2>Hi {{ user.nickname }}</h2>
+
+        <form method="post" class="nickname-change-form">
+            {% csrf_token %}
+            {{ form.media }}
+            {% bootstrap_form form %}
+
+            <button type="submit" class="btn btn-outline-info submit-btn">Submit</button>
+        </form>
+    </div>
+
+{% endblock %}

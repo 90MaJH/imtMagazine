@@ -1,0 +1,97 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/magazines/magazines_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common/tabs/tabs_boards.css' %}">
+
+    <div class="tabs-imtBoards">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <div class="nav-link" onclick="location.href='/qnas_list/'">
+                    Qna
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link" onclick="location.href='/imtBoards_list/'">
+                    ImtBoards
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link active" onclick="location.href='/magazines_list/'">
+                    Magazines
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link" onclick="location.href='/imtsofts_list/'">
+                    Imtsofts
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <tbody>
+                    {% for post in posts %}
+                        <tr onclick="location.href='/magazines_view/{{ post.id }}/'">
+                            <td>{{ post.title }}</td>
+                            <td class="text-center">{{ post.pub_dttm | date:"Y-m-d G:i" }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="btns">
+        <div class=" row">
+            <div class="col-3 container-write">
+                <button class="btn btn-outline-primary" onclick="location.href='/magazines_list/'">Home</button>
+            </div>
+
+            <div class="col-6 container-paginator">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        {% if posts.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?p={{ posts.previous_page_number }}">
+                                    <
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#"><</a>
+                            </li>
+                        {% endif %}
+                        <li class="page-item">
+                            <div class="page-link">
+                                {{ posts.number }} / {{ posts.paginator.num_pages }}
+                            </div>
+                        </li>
+                        {% if posts.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?p={{ posts.next_page_number }}">
+                                    >
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-3 container-write">
+                {# blank div for align #}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

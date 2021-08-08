@@ -1,0 +1,39 @@
+.container-write{
+    text-align: center;
+}
+
+.container-paginator{
+    text-align: right;
+}
+
+tr{
+    vertical-align: middle;
+}
+
+/*.notices{*/
+/*    font-size: 0.8em;*/
+/*    background-color: rgba(235,235,235,0.5);*/
+/*}*/
+
+/*.notice-icon{*/
+/*    font-size: 0.7em;*/
+/*}*/
+
+.posts td:first-child{
+    width: 15%;
+    word-break: break-word;
+    font-family: 'Indie Flower', cursive;
+}
+
+.posts td:nth-child(2){
+    width: 5%;
+}
+
+.posts td:nth-child(3){
+    width: 50%;
+    word-break: break-word;
+}
+
+.posts td:last-child{
+    width: 30%;
+}

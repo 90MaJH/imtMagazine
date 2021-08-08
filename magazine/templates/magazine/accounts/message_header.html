@@ -1,0 +1,68 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts/message_header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common/tabs/tabs_signin.css' %}">
+    <script src="{% static 'js/accounts/message_header.js' %}"></script>
+
+    <div class="option-list">
+        <div class="option-item" onclick="location.href='/myinfo'">
+            <i class="far fa-address-card fa-2x"></i>
+            <span>My Info</span>
+        </div>
+        <div class="option-item" onclick="location.href='/message_header'">
+            {% if new_msg_flag %}
+                <div class="new-msg"></div>
+            {% endif %}
+            <i class="far fa-envelope fa-2x"></i>
+            <span>Message</span>
+        </div>
+        <div class="option-item preparing">
+            <i class="far fa-smile fa-2x"></i>
+            <span>Preparing</span>
+        </div>
+        <div class="option-item preparing">
+            <i class="far fa-smile fa-2x"></i>
+            <span>Preparing</span>
+        </div>
+        <div class="option-item preparing">
+            <i class="far fa-smile fa-2x"></i>
+            <span>Preparing</span>
+        </div>
+    </div>
+
+    <table class="table notifications">
+        {% for messageHeader in messageHeaderArray %}
+            {% for participaint in messageHeader.participaints %}
+                {% if participaint.user != user.id %}
+                    <tr class="row-message-header" id='msg-{{ messageHeader.msg_header }}'
+                        onclick="check_message({{ messageHeader.msg_header }}, {{ participaint.user }})">
+                        <td>
+                            <img class="banner" src="{% static 'resources/img/common/defaultProfile.jpeg' %}" alt="">
+                        </td>
+                        <td>
+                            <div class="participaints">
+                                {{ participaint.nickname }} &nbsp
+                            </div>
+                            <div class="top-message">
+                                {{ messageHeader.last_message }}
+                            </div>
+                        </td>
+                        <td>
+                            {% if messageHeader.new_cnt != 0 %}
+                                <div class="new-cnt">
+                                    {{ messageHeader.new_cnt }}
+                                </div>
+                            {% endif %}
+                            <div onclick="delete_message(event, '{{ messageHeader.msg_header }}')">
+                                <i class="far fa-trash-alt"></i>
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,49 @@
+.header-container {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
+}
+
+.tabs-imtBoards {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.tab-board {
+    display: inline-block;
+    width: 33%;
+    margin: 0px;
+    border: 1px solid black;
+}
+
+.header-logo {
+    max-height: 40px;
+}
+
+.header-alarm,
+.header-alarm:hover {
+    color: inherit;
+}
+
+.header-alarm {
+    position: relative;
+}
+
+.header-alarm .count {
+    position: absolute;
+    top: -6px;
+    right: 15px;
+    border-radius: 10px;
+    background: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}

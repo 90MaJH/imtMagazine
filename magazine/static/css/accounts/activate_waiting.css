@@ -1,0 +1,17 @@
+.waiting-container{
+    margin: 40px;
+}
+
+.title{
+    font-size: 2em;
+    font-family: 'Indie Flower', cursive;
+}
+
+.context{
+    font-size: 1.4em;
+    margin: 30px 0px;
+}
+
+.imtBoards{
+    font-weight: bolder;
+}

@@ -1,0 +1,29 @@
+.option-list{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.preparing{
+    opacity: 0.5;
+}
+
+.option-item{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-msg {
+    position: absolute;
+    left: 0px;
+    top: -6px;
+    border-radius: 10px;
+    background: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+}

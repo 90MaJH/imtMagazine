@@ -1,0 +1,13 @@
+.tabs-imtBoards{
+    display: inline;
+}
+
+.nav-tabs{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-item>.active{
+    font-family: 'Cinzel', serif;
+    font-size: 0.8em;
+}

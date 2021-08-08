@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/common/header.css' %}">
+
+<div class="header-container">
+    <i class="fas fa-chevron-left fa-2x" onclick="history.back()"></i>
+    <img src="{% static 'resources/img/common/logo_wide.jpeg' %}" class="header-logo" alt="logo_wide"
+         onclick="location.href='/qnas_list/'">
+    <a href="/signin/" class="header-alarm">
+        <i class="far fa-bell fa-2x"></i>
+        {% if user.is_active == True and user.notification_cnt != 0 %}
+            <div class="count">{{ user.notification_cnt }}</div>
+        {% elif user.is_active == False %}
+            <div class="count"></div>
+        {% endif %}
+    </a>
+</div>

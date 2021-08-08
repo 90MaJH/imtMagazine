@@ -1,0 +1,83 @@
+table{
+    margin-top: 10px;
+    max-width: 100%;
+}
+
+thead tr{
+    background-color: #fdd692;
+    text-align: center;
+}
+
+tr td:first-child{
+    text-align: center;
+}
+
+td div{
+    overflow:scroll;
+    word-break: break-all;
+}
+
+img{
+    max-width: 100%;
+    object-fit: scale-down;
+}
+
+textarea{
+    width: 100%;
+}
+
+input{
+    width: 100%;
+}
+
+.btns{
+    margin-left: 10px;
+}
+
+.context{
+    min-height: 200px;
+}
+
+.post tr td:first-child{
+    width:10%;
+}
+
+.post tr td:last-child{
+    width:90%;
+}
+
+.replies tr td:first-child{
+    width: 2%;
+}
+
+.replies tr td:nth-child(2){
+    width: 25%;
+}
+
+.replies tr td:nth-child(3){
+    width: 70%;
+}
+
+.replies tr td:last-child{
+    width: 3%;
+}
+
+.reply tr td:first-child{
+    text-align: center;
+    width: 15%;
+}
+
+.reply tr td:nth-child(2){
+    text-align: center;
+    width: 35%;
+}
+
+.reply tr td:nth-child(3){
+    text-align: center;
+    width: 15%;
+}
+
+.reply tr td:last-child{
+    text-align: center;
+    width: 35%;
+}

@@ -1,0 +1,103 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/magazines/magazines_view.css' %}">
+
+    <table class="table post">
+        <thead>
+        <tr>
+            <th colspan="2">Post</th>
+        </tr>
+        </thead>
+        <tbody>
+{#        <tr>#}
+{#            <td>location</td>#}
+{#            <td> {{ post.get_location_display }}</td>#}
+{#        </tr>#}
+        <tr>
+            <td>title</td>
+            <td> {{ post.title }}</td>
+        </tr>
+        <tr>
+            <td>date</td>
+            <td> {{ post.pub_dttm }}</td>
+        </tr>
+        <tr class="context">
+            <td colspan="2">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% if post.img1 %}
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                        {% endif %}
+                        {% if post.img2 %}
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                        {% endif %}
+                        {% if post.img3 %}
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                        {% endif %}
+                        {% if post.img4 %}
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                                    aria-label="Slide 4"></button>
+                        {% endif %}
+                        {% if post.img5 %}
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                                    aria-label="Slide 5"></button>
+                        {% endif %}
+                    </div>
+                    <div class="carousel-inner">
+                        {% if post.img1 %}
+                            <div class="carousel-item active">
+                                <img src="{{ post.img1.url }}" class="d-block w-100" alt="card1">
+                            </div>
+                        {% endif %}
+                        {% if post.img2 %}
+                            <div class="carousel-item">
+                                <img src="{{ post.img2.url }}" class="d-block w-100" alt="card2">
+                            </div>
+                        {% endif %}
+                        {% if post.img3 %}
+                            <div class="carousel-item">
+                                <img src="{{ post.img3.url }}" class="d-block w-100" alt="card3">
+                            </div>
+                        {% endif %}
+                        {% if post.img4 %}
+                            <div class="carousel-item">
+                                <img src="{{ post.img4.url }}" class="d-block w-100" alt="card4">
+                            </div>
+                        {% endif %}
+                        {% if post.img5 %}
+                            <div class="carousel-item">
+                                <img src="{{ post.img5.url }}" class="d-block w-100" alt="card5">
+                            </div>
+                        {% endif %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                {% if post.qnas != 0 %}
+                    <span>
+                        <a href="/imtBoards_view/{{ post.imtBoards }}/">You can discuss about this magazine here</a>
+                    </span>
+                {% endif %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="btns">
+        <button class="btn btn-info" type="button" onClick="location.href='/magazines_list/'">List</button>
+    </div>
+
+{% endblock %}

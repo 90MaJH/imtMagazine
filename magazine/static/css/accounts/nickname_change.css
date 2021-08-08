@@ -1,0 +1,12 @@
+.nickname-change-container{
+    margin: 40px 20px 0px 20px;
+}
+
+.nickname-change-form{
+    margin: 30px 0px;
+}
+
+.form-control{
+    max-width: 360px;
+    margin-bottom: 20px;
+}

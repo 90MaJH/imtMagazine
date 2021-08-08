@@ -1,7 +1,7 @@
-"""imtMagazine URL Configuration
+"""magazine_mvp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
+    https://docs.djangoproject.com/en/2.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,8 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('magazine.urls')),
 ]
+
+handler400 = 'magazine.views.bad_request_error_page'
+handler401 = 'magazine.views.unauthorized_error_page'
+handler403 = 'magazine.views.forbidden_error_page'
+handler404 = 'magazine.views.page_not_found_error_page'
+handler500 = 'magazine.views.server_error_page'
+handler502 = 'magazine.views.bad_gateway_error_page'

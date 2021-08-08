@@ -1,0 +1,123 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/common/tabs/tabs_signin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/accounts/signin.css' %}">
+    <script src="{% static 'js/accounts/signin.js' %}"></script>
+
+    {% if user.is_active %}
+        <div class="option-list">
+            <div class="option-item" onclick="location.href='/myinfo'">
+                <i class="far fa-address-card fa-2x"></i>
+                <span>My Info</span>
+            </div>
+            <div class="option-item" onclick="location.href='/message_header'">
+                {% if new_msg_flag %}
+                    <div class="new-msg"></div>
+                {% endif %}
+                <i class="far fa-envelope fa-2x"></i>
+                <span>Message</span>
+            </div>
+            <div class="option-item preparing">
+                <i class="far fa-smile fa-2x"></i>
+                <span>Preparing</span>
+            </div>
+            <div class="option-item preparing">
+                <i class="far fa-smile fa-2x"></i>
+                <span>Preparing</span>
+            </div>
+            <div class="option-item preparing">
+                <i class="far fa-smile fa-2x"></i>
+                <span>Preparing</span>
+            </div>
+        </div>
+
+        <table class="table notifications">
+            {% for notification in notifications %}
+                {% if notification.prev_display_yn == 'Y' %}
+                    {% if notification.check_yn == 'N' %}
+                        <tr class="row-notification unchecked" id="notification-{{ notification.id }}"
+                            onclick="check_notification('{{ notification.id }}')">
+                            {% else %}
+                        <tr class="row-notification" id="notification-{{ notification.id }}"
+                            onclick="check_notification('{{ notification.id }}')">
+                    {% endif %}
+                    <td class="noti-type">
+                        {% if notification.types == '001' or notification.types == '002' %}
+                            <i class="far fa-comment-dots"></i>
+                        {% elif notification.types == '003' or notification.types == '004' %}
+                            <i class="far fa-file-alt"></i>
+                        {% elif notification.types == '005' %}
+                            <i class="fas fa-bullhorn"></i>
+                        {% elif notification.types == '006' %}
+                            <i class="fas fa-ad"></i>
+                        {% endif %}
+                    </td>
+                    <td class="noti-context">
+                        <div class="noti-message">
+                            {{ notification.message }}
+                        </div>
+                        <div class="noti-preview">
+                            {{ notification.preview | safe }}
+                        </div>
+                    </td>
+                    <td onclick="delete_notification(event, '{{ notification.id }}')">
+                        <i class="far fa-trash-alt"></i>
+                    </td>
+                {% endif %}
+            {% endfor %}
+        </table>
+
+        <div class="container-login100-form-btn signout">
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn" onclick="signout()">SIGN OUT</button>
+            </div>
+        </div>
+    {% else %}
+        <form method="post" action="{% url 'signin' %}" name="signin" class="signin">
+            {% csrf_token %}
+            <div class="wrap-input100 validate-input" data-validate="Please enter username">
+                {{ form.username }}
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Please enter password">
+                {{ form.password }}
+                <span class="focus-input100"></span>
+            </div>
+
+            {% if form.errors %}
+                <div class="form-error">
+                    <span>Please check username or password</span>
+                </div>
+            {% endif %}
+
+            <div class="text-right forgot">
+                <span class="txt1">Forgot</span>
+                <a href="/password_reset" class="txt2"> Password?</a>
+            </div>
+
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn" type="submit">Sign in</button>
+            </div>
+
+            <div class="signup">
+                <span class="txt1">
+                    Don’t have an account?
+                </span>
+                <a href="/signup" class="txt3">Sign up now</a>
+                <p class="mention">
+                    <span>
+                    you can get alarms for response to your activity.
+                    <br>
+                    you can get alarms for contents about your favority.
+                    </span>
+                </p>
+            </div>
+        </form>
+    {% endif %}
+
+
+{% endblock %}

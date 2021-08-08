@@ -1,0 +1,166 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/imtBoards/imtBoards_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common/tabs/tabs_boards.css' %}">
+    <script src="{% static 'js/imtBoards/imtBoards_list.js' %}"></script>
+
+    <div class="tabs-imtBoards">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <div class="nav-link" onclick="location.href='/qnas_list/'">
+                    Qna
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link active" onclick="location.href='/imtBoards_list/'">
+                    ImtBoards
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link" onclick="location.href='/magazines_list/'">
+                    Magazines
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link" onclick="location.href='/imtsofts_list/'">
+                    Imtsofts
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <tbody>
+                    {% for notice in notices %}
+                        <tr class='notices' onclick="location.href='/imtBoards_notice_view/{{ notice.id }}/'">
+                            <td class="text-center"><i class="fas fa-bullhorn notice-icon"></i></td>
+                            <td class="text-center reply-cnt-{{ notice.latest_reply_dttm }}">{{ notice.reply_cnt }}</td>
+                            <td>{{ notice.pub_dttm | date:"y-M-d" }}</td>
+                            <td>{{ notice.title }}</td>
+                            <td class="text-center">{{ notice.read_cnt }}</td>
+                        </tr>
+                    {% endfor %}
+                    {% for post in posts %}
+                        {% if post.magazine_no == 0 %}
+                            <tr class='posts' onclick="location.href='/imtBoards_view/{{ post.id }}/'">
+                        {% else %}
+                            <tr class='posts magazines'
+                                onclick="location.href='/magazines_view/{{ post.magazine_no }}/'">
+                        {% endif %}
+                    <td class="text-center">{{ post.get_category_display }}</td>
+                    <td class="text-center reply-cnt-{{ post.latest_reply_dttm }}">{{ post.reply_cnt }}</td>
+                    {% if post.pub_user == 0 and post.magazine_no == 0 %}
+                        <td><i class="fas fa-user-ninja"></i>&nbsp{{ post.pub_user_nickname }}</td>
+                    {% else %}
+                        <td>{{ post.pub_user_nickname }}</td>
+                    {% endif %}
+                    <td>{{ post.title }}</td>
+                    {#                            <td class="text-center">{{ post.pub_dttm | date:"G:i" }}</td>#}
+                    <td class="text-center">{{ post.read_cnt }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="dropdown">
+                        {% if searchParams.searchCategoryValue != None %}
+                            <button class="btn btn-outline-secondary dropdown-toggle dropdown-btn" type="button"
+                                    id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false" value="{{ searchParams.searchCategoryKey }}">
+                                {{ searchParams.searchCategoryValue }}
+                            </button>
+                        {% else %}
+                            <button class="btn btn-outline-secondary dropdown-toggle dropdown-btn" type="button"
+                                    id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </button>
+                        {% endif %}
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                {% for category in categories %}
+                                    <li>
+                                        <a class="dropdown-item"
+                                           onclick="select_dropdown('{{ category.key }}', '{{ category.value }}')">
+                                            {{ category.value }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-8 col-search">
+                        <div class="input-group rounded search-bar">
+                            {% if searchParams.searchWord != None %}
+                                <input type="search" class="form-control rounded" placeholder="Search"
+                                       aria-label="Search"
+                                       aria-describedby="search-addon" id="search-word"
+                                       value="{{ searchParams.searchWord }}"/>
+                            {% else %}
+                                <input type="search" class="form-control rounded" placeholder="Search"
+                                       aria-label="Search"
+                                       aria-describedby="search-addon" id="search-word"/>
+                            {% endif %}
+                            <span class="input-group-text border-0" id="search-addon" onclick="search()">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="btns">
+        <div class=" row">
+            <div class="col-3 container-write">
+                <button class="btn btn-outline-primary" onclick="location.href='/imtBoards_list/'">Home</button>
+            </div>
+
+            <div class="col-6 container-paginator">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        {% if posts.has_previous %}
+                            <li class="page-item" onclick="prev({{ posts.previous_page_number }})">
+                                <a class="page-link" href="#">
+                                    <
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#"><</a>
+                            </li>
+                        {% endif %}
+                        <li class="page-item">
+                            <div class="page-link">
+                                {{ posts.number }} / {{ posts.paginator.num_pages }}
+                            </div>
+                        </li>
+                        {% if posts.has_next %}
+                            <li class="page-item" onclick="next({{ posts.next_page_number }})">
+                                <a class="page-link" href="#">
+                                    >
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-3 container-write">
+                <button class="btn btn-primary" onclick="location.href='/imtBoards_write/'">Write</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

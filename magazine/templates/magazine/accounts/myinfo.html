@@ -1,0 +1,30 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts/myinfo.css' %}">
+    <script src="{% static 'js/accounts/myinfo.js' %}"></script>
+
+    {% load bootstrap4 %}
+
+    <h2>Hi {{ user.nickname }}</h2>
+    <ul>
+        <a href="/password_reset">
+            <li>You can update your password here</li>
+        </a>
+        <a href="/nickname_change">
+            <li>You can update your nickname here</li>
+        </a>
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {% bootstrap_form form %}
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-info">Submit</button>
+        </div>
+    </form>
+
+{% endblock %}

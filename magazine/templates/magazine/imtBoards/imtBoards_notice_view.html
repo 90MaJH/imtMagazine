@@ -1,0 +1,122 @@
+{% extends "../common/base.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/imtBoards/imtBoards_notice_view.css' %}">
+    <script src="{% static 'js/imtBoards/imtBoards_notice_view.js' %}"></script>
+    <script type="text/javascript">
+        var user = {
+            'id': '{{ user.id }}',
+            'is_active': '{{ user.is_active }}',
+            'nickname': '{{ user.nickname }}'
+        };
+        var notice = {
+            'id': '{{ notice.id }}',
+        };
+    </script>
+
+    <table class="table notice">
+        <thead>
+        <tr>
+            <th colspan="2">Notice</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>title</td>
+            <td> {{ notice.title }}</td>
+        </tr>
+        <tr>
+            <td>date</td>
+            <td> {{ notice.pub_dttm }}</td>
+        </tr>
+        <tr class="context">
+            <td colspan="2">
+                <div>
+                    {{ notice.context | safe | linebreaks }}
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="btns">
+        <button class="btn btn-info" type="button" onClick="location.href='/imtBoards_list/'">List</button>
+    </div>
+
+    {% if replies %}
+        <table class="table replies">
+            <thead>
+            <tr>
+                <th colspan="4">Replies</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reply in replies %}
+                <tr onclick="reReply({{ reply.parent }}, '{{ reply.context|slice:":20" }}')">
+                    {% if reply.seq == reply.parent %}
+                        <td> {{ reply.seq }} </td>
+                    {% else %}
+                        <td><i class="fas fa-angle-right"></i></td>
+                    {% endif %}
+                    {% if reply.reply_user == 0 %}
+                        <td><i class="fas fa-user-ninja"></i>&nbsp{{ reply.reply_user_nickname }}</td>
+                    {% else %}
+                        <td>{{ reply.reply_user_nickname }}</td>
+                    {% endif %}
+                    <td>
+                        <div>
+                            {{ reply.context }}
+                        </div>
+                    </td>
+                    <td>
+                        {{ reply.reply_dttm | date:"G:i" }}<br>
+                        {% if user.is_active == False %}
+                            {% if reply.reply_user == 0 %}
+                                <i class="far fa-trash-alt"
+                                   onClick="replyDelete(event, {{ reply.imtBoards_notice }}, {{ reply.seq }}, {{ reply.reply_user }})"></i>
+                            {% endif %}
+                        {% else %}
+                            {% if reply.reply_user == user.id %}
+                                <i class="far fa-trash-alt"
+                                   onClick="replyDelete(event, {{ reply.imtBoards_notice }}, {{ reply.seq }}, {{ reply.reply_user }})"></i>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <form method="POST" name="replyForm" class="post-form">
+        <table class="table reply">
+            <thead>
+            <tr>
+                <th colspan="4">Reply</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% csrf_token %}
+            <input type="hidden" name="imtBoards_notice" value='{{ notice.id }}'>
+            {{ form.reply_user }}
+            <input type="hidden" name="parent" id="parent-reply-id" value=0>
+            {% if user.is_active == False %}
+                <tr>
+                    <td> Name</td>
+                    <td> {{ form.reply_user_nickname }} </td>
+                    <td> PW</td>
+                    <td> {{ form.password }} </td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td colspan="4"> {{ form.context }} </td>
+            </tr>
+            <tr id="rereply-comment" class="visible-false-custom">
+                <td id="re-reply" colspan="3"></td>
+                <td id="re-reply-cancel"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <button class="btn btn-outline-secondary btn-reply-submit" onclick="replySubmit()">Send</button>
+{% endblock %}
