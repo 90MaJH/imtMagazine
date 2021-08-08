@@ -708,7 +708,7 @@ def qnas_write(request):
                 if (targetUser.id != 0 and targetUser.id != postUser):
                     targetUser.notification_cnt += 1
                     noti = Notification.objects.create(user=targetUser.id, types='003',
-                                                       message='new thing was posted about ' + categoryValue + ' in N.B.hoods',
+                                                       message='new thing was posted about ' + categoryValue + ' in QNA',
                                                        url='/qnas_view/' + str(qnas.id), params='',
                                                        preview=notificationPreview)
                     targetUser.save()
@@ -857,7 +857,7 @@ def qnas_view(request, pk):
                 if qnas.pub_user != replyUserId:
                     if qnas.pub_user != 0:
                         Notification.objects.create(user=qnas.pub_user, types='001',
-                                                    message='someone replies to your post on N.B.hoods',
+                                                    message='someone replies to your post on QNA',
                                                     url='/qnas_view/' + str(qnas.id),
                                                     params='',
                                                     preview=responseForm.data['context'][:100])
@@ -875,7 +875,7 @@ def qnas_view(request, pk):
                         if qnas.pub_user == parentReplyUserId:
                             if parentReplyUserId != 0:
                                 Notification.objects.create(user=parentReplyUserId, types='002',
-                                                            message='someone re-replies to your reply on N.B.hoods',
+                                                            message='someone re-replies to your reply on QNA',
                                                             url='/qnas_view/' + str(qnas.id),
                                                             params='',
                                                             preview=responseForm.data['context'][:100])
@@ -884,7 +884,7 @@ def qnas_view(request, pk):
                         else:
                             if qnas.pub_user != 0:
                                 Notification.objects.create(user=qnas.pub_user, types='001',
-                                                            message='someone replies to your post on N.B.hoods',
+                                                            message='someone replies to your post on QNA',
                                                             url='/qnas_view/' + str(qnas.id),
                                                             params='',
                                                             preview=responseForm.data['context'][:100])
@@ -892,7 +892,7 @@ def qnas_view(request, pk):
                                 pubUser.save()
                             if parentReplyUserId != 0:
                                 Notification.objects.create(user=parentReplyUserId, types='002',
-                                                            message='someone re-replies to your reply on N.B.hoods',
+                                                            message='someone re-replies to your reply on QNA',
                                                             url='/qnas_view/' + str(qnas.id),
                                                             params='',
                                                             preview=responseForm.data['context'][:100])
@@ -901,7 +901,7 @@ def qnas_view(request, pk):
                     else:
                         if qnas.pub_user != 0:
                             Notification.objects.create(user=qnas.pub_user, types='001',
-                                                        message='someone replies to your post on N.B.hoods',
+                                                        message='someone replies to your post on QNA',
                                                         url='/qnas_view/' + str(qnas.id),
                                                         params='',
                                                         preview=responseForm.data['context'][:100])
@@ -911,7 +911,7 @@ def qnas_view(request, pk):
                     if parentReplyUserId != replyUserId:
                         if parentReplyUserId != 0:
                             Notification.objects.create(user=parentReplyUserId, types='002',
-                                                        message='someone re-replies to your reply on N.B.hoods',
+                                                        message='someone re-replies to your reply on QNA',
                                                         url='/qnas_view/' + str(qnas.id),
                                                         params='',
                                                         preview=responseForm.data['context'][:100])
@@ -974,7 +974,7 @@ def qnas_notice_view(request, pk):
                 if parentReplyUserId != replyUserId:
                     if parentReplyUserId != 0:
                         Notification.objects.create(user=parentReplyUserId, types='002',
-                                                    message='someone re-replies to your reply on N.B.hoods',
+                                                    message='someone re-replies to your reply on QNA',
                                                     url='/qnas_notice_view/' + str(
                                                         qnaNotice.id),
                                                     params='',
