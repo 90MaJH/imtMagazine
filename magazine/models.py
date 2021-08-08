@@ -21,33 +21,33 @@ class Base_code(models.Model):
     def __str__(self):
         return str(self.id) + " _ " + self.value
 
-# categories_imtboards = Base_code.objects.filter(high_cat='001', middle_cat='001', low_cat='001', delete_yn='N').only('key', 'value')
-# categories_imtboards_choices = ()
-# for category in categories_imtboards:
-#     tmp_category = (category.key, category.value)
-#     categories_imtboards_choices += (tmp_category,)
-categories_imtboards_choices = (('001', 'initial'),)
+categories_imtboards = Base_code.objects.filter(high_cat='001', middle_cat='001', low_cat='001', delete_yn='N').only('key', 'value')
+categories_imtboards_choices = ()
+for category in categories_imtboards:
+    tmp_category = (category.key, category.value)
+    categories_imtboards_choices += (tmp_category,)
+# categories_imtboards_choices = (('001', 'initial'),)
 
-# categories_qnas = Base_code.objects.filter(high_cat='001', middle_cat='002', low_cat='001', delete_yn='N').only('key', 'value')
-# categories_qnas_choices = ()
-# for category in categories_qnas:
-#     tmp_category = (category.key, category.value)
-#     categories_qnas_choices += (tmp_category,)
-categories_qnas_choices = (('001', 'initial'),)
+categories_qnas = Base_code.objects.filter(high_cat='001', middle_cat='002', low_cat='001', delete_yn='N').only('key', 'value')
+categories_qnas_choices = ()
+for category in categories_qnas:
+    tmp_category = (category.key, category.value)
+    categories_qnas_choices += (tmp_category,)
+# categories_qnas_choices = (('001', 'initial'),)
 
-# notification_types = Base_code.objects.filter(high_cat='002', middle_cat='001', low_cat='001', delete_yn='N').only('key', 'value')
-# notification_types_choices = ()
-# for notification_type in notification_types:
-#     tmp_notification_type = (notification_type.key, notification_type.value)
-#     notification_types_choices += (tmp_notification_type,)
-notification_types_choices = (('001', 'initial'),)
+notification_types = Base_code.objects.filter(high_cat='002', middle_cat='001', low_cat='001', delete_yn='N').only('key', 'value')
+notification_types_choices = ()
+for notification_type in notification_types:
+    tmp_notification_type = (notification_type.key, notification_type.value)
+    notification_types_choices += (tmp_notification_type,)
+# notification_types_choices = (('001', 'initial'),)
 
-# channels = Base_code.objects.filter(high_cat='001', middle_cat='003', low_cat='001', delete_yn='N').only('key', 'value')
-# channels_choices = ()
-# for channel in channels:
-#     tmp_channel = (channel.key, channel.value)
-#     channels_choices += (tmp_channel,)
-channels_choices = (('001', 'initial'),)
+channels = Base_code.objects.filter(high_cat='001', middle_cat='003', low_cat='001', delete_yn='N').only('key', 'value')
+channels_choices = ()
+for channel in channels:
+    tmp_channel = (channel.key, channel.value)
+    channels_choices += (tmp_channel,)
+# channels_choices = (('001', 'initial'),)
 
 # Accounts
 class User(AbstractUser):
