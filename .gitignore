@@ -1,0 +1,13 @@
+*.pyc
+*~
+__pycache__
+myvenv
+*.sqlite3
+/static
+.DS_Store
+/media
+/nokoko/migrations
+/nokoko/migrations_backup
+/secrets
+/logs
+/.config
