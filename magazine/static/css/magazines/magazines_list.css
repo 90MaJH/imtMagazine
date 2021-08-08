@@ -17,3 +17,8 @@ tr td:last-child{
 tr{
     vertical-align: middle;
 }
+
+.page-link{
+    min-width: 60px;
+    text-align: center;
+}

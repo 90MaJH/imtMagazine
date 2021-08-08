@@ -37,3 +37,8 @@ tr{
 .posts td:last-child{
     width: 30%;
 }
+
+.page-link{
+    min-width: 60px;
+    text-align: center;
+}

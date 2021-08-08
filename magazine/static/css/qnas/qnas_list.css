@@ -63,6 +63,11 @@ tr{
 .col-search{
     padding-left: 0px;
 }
+
+.page-link{
+    min-width: 60px;
+    text-align: center;
+}
 /*
 <= 30초 : 보라색
 <= 1분 : 빨간색
